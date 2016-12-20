@@ -1,8 +1,10 @@
 <?php  
 // send the command to NodeMCU - /change.php?id=NM2&pin=16&toggle=off
+//created child branch
+$toggle = $_GET['toggle'];
+
 $deviceId = $_GET['id'];
 $gpioPin = $_GET['pin'];
-$toggle = $_GET['toggle'];
 $json_file = file_get_contents('sample.json');
 $stats = json_decode($json_file);
 foreach ($stats->status as $i => $stat) {
@@ -12,5 +14,6 @@ foreach ($stats->status as $i => $stat) {
 	}
 }
 $json = json_encode($stats);
+
 file_put_contents('sample.json', $json);
 ?>
